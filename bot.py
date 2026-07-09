@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timedelta
 
 TOKEN = "8739778187:AAHoaQ9_Aqtigf8Jyq68xM2mZKQ67Ax1CvE"
-CARDS_FOLDER = "/sdcard/Download/memes"
+CARDS_FOLDER = "memes"
 DATA_FILE = "users_data.json"
 
 COOLDOWN_HOURS = 12
