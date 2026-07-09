@@ -1,13 +1,25 @@
-from telegram import Update, ReplyKeyboardMarkup
-from telegram.ext import Application, CommandHandler, MessageHandler, ContextTypes, filters
-import os
-import random
-import json
-from datetime import datetime
+name: Telegram Bot
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")
+on:
+  workflow_dispatch:
 
-CARDS_FOLDER = "memes"
-DATA_FILE = "users_data.json"
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
 
-COOLDOWN_HOURS = 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: python bot.py
